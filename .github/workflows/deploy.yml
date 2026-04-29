@@ -17,9 +17,9 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd cicd-project
-            git pull origin main
-            docker stop $(docker ps -q) || true
-            docker rm $(docker ps -aq) || true
-            docker build -t myapp .
-            docker run -d -p 5000:5000 myapp
+  cd cicd-project
+  git pull origin main
+  docker stop mycontainer || true
+  docker rm mycontainer || true
+  docker build -t myapp .
+  docker run -d --name mycontainer -p 5000:5000 myapp
